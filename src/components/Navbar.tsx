@@ -1,50 +1,54 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
+import { Lang } from "@/lib/i18n";
 
 const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Platforms", href: "#platforms" },
+  { label: { en: "Guide", ar: "الدليل" }, href: "#guide" },
+  { label: { en: "Features", ar: "المميزات" }, href: "#features" },
+  { label: { en: "Platforms", ar: "المنصات" }, href: "#platforms" },
+  { label: { en: "FAQ", ar: "الأسئلة" }, href: "#faq" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  lang: Lang;
+  onToggleLang: () => void;
+}
+
+export default function Navbar({ lang, onToggleLang }: NavbarProps) {
   const [open, setOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-border/50 backdrop-blur-xl">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <a href="#" className="font-display text-xl font-bold text-foreground">
-          AiUltra<span className="text-primary glow-text">DL</span>
+          AiUltra<span className="text-primary glow-text">Downloader</span>
         </a>
 
-        {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((l) => (
             <a
-              key={l.label}
+              key={l.href}
               href={l.href}
               className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
             >
-              {l.label}
+              {l.label[lang]}
             </a>
           ))}
-          <a
-            href="#pricing"
-            className="bg-primary text-primary-foreground font-display font-bold text-sm px-5 py-2 rounded-md hover:brightness-110 transition-all active:scale-95"
+          <button
+            onClick={onToggleLang}
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            GO PRO
-          </a>
+            <Globe size={14} />
+            {lang === "en" ? "AR" : "EN"}
+          </button>
         </div>
 
-        {/* Mobile toggle */}
         <button onClick={() => setOpen(!open)} className="md:hidden text-foreground">
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -55,21 +59,21 @@ export default function Navbar() {
           >
             {navLinks.map((l) => (
               <a
-                key={l.label}
+                key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="block py-3 text-muted-foreground hover:text-primary transition-colors"
               >
-                {l.label}
+                {l.label[lang]}
               </a>
             ))}
-            <a
-              href="#pricing"
-              onClick={() => setOpen(false)}
-              className="inline-block mt-2 bg-primary text-primary-foreground font-display font-bold text-sm px-5 py-2 rounded-md"
+            <button
+              onClick={() => { onToggleLang(); setOpen(false); }}
+              className="flex items-center gap-1.5 py-3 text-muted-foreground hover:text-primary transition-colors"
             >
-              GO PRO
-            </a>
+              <Globe size={14} />
+              {lang === "en" ? "العربية" : "English"}
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

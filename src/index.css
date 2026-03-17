@@ -6,52 +6,52 @@
 
 @layer base {
   :root {
-    --background: 0 0% 1%;
+    --background: 0 0% 2%;
     --foreground: 0 0% 96%;
 
-    --card: 0 0% 4%;
+    --card: 0 0% 5%;
     --card-foreground: 0 0% 96%;
 
-    --popover: 0 0% 4%;
+    --popover: 0 0% 5%;
     --popover-foreground: 0 0% 96%;
 
-    --primary: 18 100% 50%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 0 72% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 18 100% 15%;
+    --secondary: 0 50% 12%;
     --secondary-foreground: 0 0% 96%;
 
     --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 45%;
+    --muted-foreground: 0 0% 50%;
 
-    --accent: 18 100% 15%;
+    --accent: 0 50% 12%;
     --accent-foreground: 0 0% 96%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 96%;
 
-    --success: 174 100% 50%;
+    --success: 150 80% 45%;
     --success-foreground: 0 0% 0%;
 
-    --border: 18 100% 50% / 0.15;
+    --border: 0 40% 30% / 0.2;
     --input: 0 0% 10%;
-    --ring: 18 100% 50%;
+    --ring: 0 72% 45%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --surface: 0 0% 4%;
-    --primary-muted: 18 100% 15%;
-    --glow-primary: 0 0 15px -5px hsl(18 100% 50%);
-    --glow-primary-lg: 0 0 30px -5px hsl(18 100% 50% / 0.4);
+    --surface: 0 0% 5%;
+    --primary-muted: 0 50% 12%;
+    --glow-primary: 0 0 20px -5px hsl(0 72% 45% / 0.5);
+    --glow-primary-lg: 0 0 40px -5px hsl(0 72% 45% / 0.35);
 
     --sidebar-background: 0 0% 3%;
     --sidebar-foreground: 0 0% 96%;
-    --sidebar-primary: 18 100% 50%;
-    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-primary: 0 72% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 8%;
     --sidebar-accent-foreground: 0 0% 96%;
-    --sidebar-border: 18 100% 50% / 0.1;
-    --sidebar-ring: 18 100% 50%;
+    --sidebar-border: 0 72% 45% / 0.1;
+    --sidebar-ring: 0 72% 45%;
   }
 }
 
@@ -63,7 +63,6 @@
     @apply bg-background text-foreground font-body antialiased;
   }
 
-  /* Custom orange scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
@@ -93,7 +92,7 @@
   }
 
   .glass-panel {
-    @apply bg-card/80 backdrop-blur-md border border-border rounded-lg;
+    @apply bg-card/70 backdrop-blur-xl border border-border rounded-xl;
   }
   .glass-panel-hover {
     @apply glass-panel transition-all duration-500;
@@ -104,7 +103,7 @@
   }
 
   .glow-text {
-    filter: drop-shadow(0 0 15px hsl(var(--primary) / 0.5));
+    filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.6));
   }
   .glow-box {
     box-shadow: var(--glow-primary);
@@ -132,7 +131,39 @@
 
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(18 100% 65%));
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(0 60% 60%));
+  }
+
+  /* Diamond shimmer border */
+  .shimmer-border {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-border::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      transparent 30%,
+      hsl(var(--primary) / 0.6) 50%,
+      transparent 70%
+    );
+    background-size: 300% 300%;
+    animation: shimmer-move 4s ease-in-out infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  @keyframes shimmer-move {
+    0% { background-position: 100% 100%; }
+    50% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
   }
 
   .scan-line {
@@ -146,7 +177,7 @@
 
   @keyframes pulse-glow {
     0%, 100% { box-shadow: 0 0 5px hsl(var(--primary) / 0.3); }
-    50% { box-shadow: 0 0 20px hsl(var(--primary) / 0.6); }
+    50% { box-shadow: 0 0 25px hsl(var(--primary) / 0.5); }
   }
 
   @keyframes float {
@@ -155,7 +186,7 @@
   }
 
   .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+    animation: pulse-glow 2.5s ease-in-out infinite;
   }
   .animate-float {
     animation: float 3s ease-in-out infinite;

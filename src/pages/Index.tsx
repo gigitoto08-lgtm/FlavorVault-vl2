@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
+import chefHeroImg from "@/assets/chef-hero.jpg";
 import { Search, Heart, ChefHat, X } from "lucide-react";
 import { recipes, categories } from "@/data/recipes";
 import type { Recipe } from "@/data/recipes";

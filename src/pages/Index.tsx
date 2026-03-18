@@ -6,6 +6,7 @@ import type { Recipe } from "@/data/recipes";
 import { getFavorites, toggleFavorite, getRatings, setRating } from "@/lib/favorites";
 import RecipeCard from "@/components/RecipeCard";
 import RecipeDetail from "@/components/RecipeDetail";
+import SEOContent from "@/components/SEOContent";
 
 export default function Index() {
   const [search, setSearch] = useState("");
@@ -66,16 +67,16 @@ export default function Index() {
         </nav>
         <div className="relative z-10 text-center px-6 pt-12 pb-16 max-w-3xl mx-auto">
          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 leading-tight">
-            Discover <span className="text-primary">Delicious</span> Recipes
+            Discover <span className="text-primary">Easy Recipes</span> for Every Meal
           </h1>
           <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-            100+ curated recipes from around the world — cook something amazing today.
+            120+ free curated recipes with step-by-step instructions, ingredients, and beautiful photography — from quick weeknight dinners to show-stopping desserts. Find your next favorite dish today.
           </p>
           {/* Chef hero image */}
           <div className="relative max-w-2xl mx-auto mb-8 rounded-2xl overflow-hidden shadow-xl border border-border">
             <img
               src={chefHeroImg}
-              alt="Professional chef presenting beautifully plated gourmet dishes"
+              alt="Professional chef presenting beautifully plated gourmet dishes in a modern kitchen"
               className="w-full h-auto object-cover"
               loading="eager"
             />
@@ -88,8 +89,9 @@ export default function Index() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search recipes..."
+              placeholder="Search recipes by name, ingredient, or cuisine..."
               className="w-full pl-11 pr-10 py-3.5 bg-card border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring text-sm"
+              aria-label="Search recipes"
             />
             {search && (
               <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
@@ -102,7 +104,7 @@ export default function Index() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
         {/* Categories */}
-        <div className="flex gap-2 overflow-x-auto py-6 scrollbar-hide -mx-4 px-4">
+        <div className="flex gap-2 overflow-x-auto py-6 scrollbar-hide -mx-4 px-4" role="navigation" aria-label="Recipe categories">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -141,9 +143,12 @@ export default function Index() {
         )}
       </main>
 
+      {/* SEO Content */}
+      <SEOContent />
+
       {/* Footer */}
       <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
-        <p>FlavorVault © {new Date().getFullYear()} — Made with love for food lovers everywhere.</p>
+        <p>FlavorVault © {new Date().getFullYear()} — Your free recipe collection. Easy recipes for breakfast, lunch, dinner, desserts & more.</p>
       </footer>
 
       {/* Detail Modal */}

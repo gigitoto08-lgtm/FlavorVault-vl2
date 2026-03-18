@@ -64,12 +64,22 @@ export default function Index() {
           </button>
         </nav>
         <div className="relative z-10 text-center px-6 pt-12 pb-16 max-w-3xl mx-auto">
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 leading-tight">
+         <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 leading-tight">
             Discover <span className="text-primary">Delicious</span> Recipes
           </h1>
           <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
             100+ curated recipes from around the world — cook something amazing today.
           </p>
+          {/* Chef hero image */}
+          <div className="relative max-w-2xl mx-auto mb-8 rounded-2xl overflow-hidden shadow-xl border border-border">
+            <img
+              src={chefHeroImg}
+              alt="Professional chef presenting beautifully plated gourmet dishes"
+              className="w-full h-auto object-cover"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          </div>
           {/* Search */}
           <div className="relative max-w-lg mx-auto">
             <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />

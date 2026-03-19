@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- الصفحة الرئيسية -->
   <url>
     <loc>https://flavorvaultpro.netlify.app/</loc>
   </url>
 
+  <!-- وصفات -->
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=1</loc>
+  </url>
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=2</loc>
+  </url>
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=3</loc>
+  </url>
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=4</loc>
+  </url>
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=5</loc>
+  </url>
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=6</loc>
+  </url>
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=7</loc>
+  </url>
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=8</loc>
+  </url>
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=9</loc>
+  </url>
+  <url>
+    <loc>https://flavorvaultpro.netlify.app/?recipe=10</loc>
+  </url>
+  
+  <!-- يمكنك تكرار النمط لكل وصفة حتى تصل إلى آخر وصفة -->
+  
 </urlset>
